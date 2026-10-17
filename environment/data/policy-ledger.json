@@ -1,0 +1,236 @@
+[
+  {
+    "seq": 1,
+    "src_zone": "zone-hq-core",
+    "dst_zone": "zone-dmz-edge",
+    "address": "addr-dmz-public",
+    "service": "svc-web-static",
+    "action": "permit"
+  },
+  {
+    "seq": 2,
+    "src_zone": "zone-hq-core",
+    "dst_zone": "zone-dmz-edge",
+    "address": "addr-dmz-public",
+    "service": "svc-dns-egress",
+    "action": "permit"
+  },
+  {
+    "seq": 3,
+    "src_zone": "zone-hq-core",
+    "dst_zone": "zone-dmz-edge",
+    "address": "addr-dmz-public",
+    "service": "svc-web-rollout",
+    "action": "permit"
+  },
+  {
+    "seq": 4,
+    "src_zone": "zone-hq-core",
+    "dst_zone": "zone-dmz-edge",
+    "address": "addr-dmz-public",
+    "service": "svc-web-static",
+    "action": "deny"
+  },
+  {
+    "seq": 5,
+    "src_zone": "zone-hq-core",
+    "dst_zone": "zone-dmz-edge",
+    "address": "addr-dmz-partner",
+    "service": "svc-web-midway",
+    "action": "deny"
+  },
+  {
+    "seq": 6,
+    "src_zone": "zone-hq-core",
+    "dst_zone": "zone-dmz-edge",
+    "address": "addr-dmz-partner",
+    "service": "svc-web-wide",
+    "action": "permit"
+  },
+  {
+    "seq": 7,
+    "src_zone": "zone-hq-core",
+    "dst_zone": "zone-dmz-edge",
+    "address": "addr-hq-core",
+    "service": "svc-ntp-in",
+    "action": "permit"
+  },
+  {
+    "seq": 8,
+    "src_zone": "zone-hq-core",
+    "dst_zone": "zone-dmz-edge",
+    "address": "addr-dmz-frontline",
+    "service": "svc-web-frontline",
+    "action": "deny"
+  },
+  {
+    "seq": 9,
+    "src_zone": "zone-hq-core",
+    "dst_zone": "zone-dmz-edge",
+    "address": "addr-dmz-public",
+    "service": "svc-web-wide",
+    "action": "permit"
+  },
+  {
+    "seq": 10,
+    "src_zone": "zone-dmz-edge",
+    "dst_zone": "zone-dc-app",
+    "address": "addr-dc-app-a",
+    "service": "svc-web-wide",
+    "action": "permit"
+  },
+  {
+    "seq": 11,
+    "src_zone": "zone-dmz-edge",
+    "dst_zone": "zone-dc-app",
+    "address": "addr-dc-app-batch",
+    "service": "svc-web-wide",
+    "action": "deny"
+  },
+  {
+    "seq": 12,
+    "src_zone": "zone-dmz-edge",
+    "dst_zone": "zone-dc-app",
+    "address": "addr-dc-app-a",
+    "service": "svc-web-rollout",
+    "action": "deny"
+  },
+  {
+    "seq": 13,
+    "src_zone": "zone-dmz-edge",
+    "dst_zone": "zone-dc-app",
+    "address": "addr-dc-app-next",
+    "service": "svc-app-cluster",
+    "action": "permit"
+  },
+  {
+    "seq": 14,
+    "src_zone": "zone-ot-legacy",
+    "dst_zone": "zone-dc-app",
+    "address": "addr-ot-legacy",
+    "service": "svc-db-mysql",
+    "action": "permit"
+  },
+  {
+    "seq": 15,
+    "src_zone": "zone-ot-legacy",
+    "dst_zone": "zone-dc-app",
+    "address": "addr-ot-legacy",
+    "service": "svc-db-mysql",
+    "action": "deny"
+  },
+  {
+    "seq": 16,
+    "src_zone": "zone-vpn-partner",
+    "dst_zone": "zone-dc-app",
+    "address": "addr-vpn-partner-a",
+    "service": "svc-mgmt-ssh",
+    "action": "translate",
+    "translate_to": "198.18.30.0/24"
+  },
+  {
+    "seq": 17,
+    "src_zone": "zone-vpn-partner",
+    "dst_zone": "zone-dc-app",
+    "address": "addr-vpn-partner-b",
+    "service": "svc-mgmt-ssh",
+    "action": "permit"
+  },
+  {
+    "seq": 18,
+    "src_zone": "zone-vpn-partner",
+    "dst_zone": "zone-dc-app",
+    "address": "addr-vpn-partner-a",
+    "service": "svc-db-mysql",
+    "action": "permit"
+  },
+  {
+    "seq": 19,
+    "src_zone": "zone-dmz-edge",
+    "dst_zone": "zone-hq-core",
+    "address": "addr-dmz-public",
+    "service": "svc-web-static",
+    "action": "permit"
+  },
+  {
+    "seq": 20,
+    "src_zone": "zone-hq-core",
+    "dst_zone": "zone-payroll-bldg3",
+    "address": "addr-payroll-bldg3",
+    "service": "svc-smb-legacy",
+    "action": "permit"
+  },
+  {
+    "seq": 21,
+    "src_zone": "zone-hq-core",
+    "dst_zone": "zone-payroll-bldg3",
+    "address": "addr-payroll-wide",
+    "service": "svc-smb-legacy",
+    "action": "deny"
+  },
+  {
+    "seq": 22,
+    "src_zone": "zone-hq-core",
+    "dst_zone": "zone-payroll-bldg3",
+    "address": "addr-payroll-wide",
+    "service": "svc-print-legacy",
+    "action": "permit"
+  },
+  {
+    "seq": 23,
+    "src_zone": "zone-wifi-guest",
+    "dst_zone": "zone-dmz-edge",
+    "address": "addr-wifi-guest",
+    "service": "svc-web-static",
+    "action": "permit"
+  },
+  {
+    "seq": 24,
+    "src_zone": "zone-hq-core",
+    "dst_zone": "zone-wifi-guest",
+    "address": "addr-wifi-guest",
+    "service": "svc-web-static",
+    "action": "deny"
+  },
+  {
+    "seq": 25,
+    "src_zone": "zone-mgmt-plane",
+    "dst_zone": "zone-hq-core",
+    "address": "addr-mgmt-jump",
+    "service": "svc-mgmt-ssh",
+    "action": "permit"
+  },
+  {
+    "seq": 26,
+    "src_zone": "zone-hq-core",
+    "dst_zone": "zone-payroll-bldg3",
+    "address": "addr-payroll-wide",
+    "service": "svc-ntp-in",
+    "action": "translate",
+    "translate_to": "203.0.113.232/29"
+  },
+  {
+    "seq": 27,
+    "src_zone": "zone-dmz-edge",
+    "dst_zone": "zone-dc-app",
+    "address": "addr-dc-db-a",
+    "service": "svc-ot-mixed",
+    "action": "deny"
+  },
+  {
+    "seq": 28,
+    "src_zone": "zone-dmz-edge",
+    "dst_zone": "zone-dc-app",
+    "address": "addr-dc-db-a",
+    "service": "svc-db-mysql",
+    "action": "deny"
+  },
+  {
+    "seq": 29,
+    "src_zone": "zone-dmz-edge",
+    "dst_zone": "zone-dc-app",
+    "address": "addr-dc-db-wide",
+    "service": "svc-db-mysql",
+    "action": "permit"
+  }
+]
