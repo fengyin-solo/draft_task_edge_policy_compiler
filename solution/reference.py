@@ -232,15 +232,24 @@ def load_journal(path, device):
         text = payload.decode("utf-8")
     except UnicodeDecodeError as exc:
         raise LedgerError("流水不是 UTF-8：%s" % (exc,))
+    if payload and not payload.endswith(b"\n"):
+        raise LedgerError("流水最后一行没有换行")
     records = []
     tail = ZERO_DIGEST
-    for number, line in enumerate(text.split("\n"), 1):
-        if not line.strip():
-            continue
+    for number, physical in enumerate(payload.splitlines(keepends=True), 1):
+        raw_line = physical[:-1]
+        if not raw_line:
+            raise LedgerError("流水第 %d 行是空行" % (number,))
+        try:
+            line = raw_line.decode("utf-8")
+        except UnicodeDecodeError as exc:
+            raise LedgerError("流水第 %d 行不是 UTF-8" % (number,)) from exc
         try:
             record = json.loads(line, object_pairs_hook=_reject_duplicate_keys("流水第 %d 行" % (number,)))
         except json.JSONDecodeError as exc:
             raise LedgerError("流水第 %d 行不是合法 JSON：%s" % (number, exc))
+        if json.dumps(record, ensure_ascii=False, separators=(",", ":")) != line:
+            raise LedgerError("流水第 %d 行不是紧凑 JSON" % (number,))
         checked = check_journal_record(record, number, device)
         if checked["prev_sha256"] != tail:
             raise LedgerError("流水第 %d 行接不上上一笔的摘要" % (number,))
